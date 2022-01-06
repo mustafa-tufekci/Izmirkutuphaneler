@@ -25,10 +25,8 @@ class LibraryListActivity : AppCompatActivity() {
 
         libraryViewModel.getLibraryList()
 
-        libraryViewModel.libraryListLiveData.observe(this, Observer { cevap ->
-            Toast.makeText(applicationContext, cevap.kayitSayisi.toString(), Toast.LENGTH_LONG).show()
-            Log.i("Text: ",cevap.kayitSayisi.toString())
-
+        libraryViewModel.libraryListLiveData.observe(this, Observer { library->
+            libraryAdapter.setData(library)
         })
 
         var libraryList: ArrayList<String> = arrayListOf()
@@ -42,6 +40,5 @@ class LibraryListActivity : AppCompatActivity() {
         rv_librarylist.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_librarylist.adapter = libraryAdapter
 
-        libraryAdapter.getData(libraryList)
     }
 }

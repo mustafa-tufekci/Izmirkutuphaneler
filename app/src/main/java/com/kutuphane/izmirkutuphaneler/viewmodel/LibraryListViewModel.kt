@@ -17,7 +17,8 @@ class LibraryListViewModel : ViewModel(){
 
     @SuppressLint("CheckResult")
     fun getLibraryList(){
-        libraryAPIService.getLibraryInfoList().subscribeOn(Schedulers.newThread())
+        libraryAPIService.getLibraryInfoList()
+            .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSingleObserver<LibraryListResponse>() {
                 override fun onSuccess(response: LibraryListResponse) {
